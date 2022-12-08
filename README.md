@@ -22,7 +22,7 @@ The original instructions for this website said to use a grid system, so I used 
 The page can display all countries, or can search for countries matching a user-input. For example, searching 'China' results in three results. The user can scroll through the results, and can click-through for more information on that country.
 
 ### Note!
-The JavaScript isn't new and shiny, but it work. I don't use in-built functions for creating and manipulating elements... much. The reason is simply because it's easier for me to see the html I'm adding, just all about ease-of-use.
+The JavaScript isn't new and shiny, but it works. I don't use in-built functions for creating and manipulating elements... much. The reason is simply because it's easier for me to see the html I'm adding, just all about ease-of-use.
 
 ### How to use
 Simply hit enter (or click the search icon) to show all countries. Click on the red arrow icon to scroll back to top at anytime.
