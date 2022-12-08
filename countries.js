@@ -202,8 +202,6 @@ function mainResults(jsonObj) {
 
             var country = data[i].alpha3Code;
 
-            //console.log(country);
-
             countrySearch(country);
 
             $('html, body').animate({
@@ -225,8 +223,6 @@ function mainResults(jsonObj) {
             document.getElementById("results").style.display = "";
 
             var country = data[i].alpha3Code;
-
-            //console.log(country);
 
             countrySearch(country);
 
@@ -282,8 +278,6 @@ function showCountry(jsonObj2) {
     text += '</ul>';
     text += endRow;
     
-    console.log(data.flags.png)
-
     let flag = data.flags.png
 
     if(data.Poster !== null) {
@@ -301,8 +295,6 @@ function showCountry(jsonObj2) {
     //Handles the close button for the results
     
     var close = document.querySelectorAll(".close");
-
-    console.log(close)
     
     for(var i = 0; i < close.length; i++) {
         close[i].addEventListener("click", function(i) {
