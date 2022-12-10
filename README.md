@@ -7,11 +7,11 @@ ES6 syntax is new to me, I had an excellent JavaScript teacher, but he had a mor
 
 With the exception of exercise 4, they all stumped me in their own ways. For example, of course I can iterate through an array, but had never seen setTimeout before. I can parse a string and compare values, but how do you switch day, month, and year, when two numbers can meet the same conditions? This was the first time approaching (outside of React projects) an array by mapping, and it still feels odd to say 'not month', but you have to force the number switch somehow.
 
-In exercise 3, the time difference assignment, again I've done that before, but this is new syntax, new approach, and it's all a lot to remember, though the process for it is straightforward enough, as is generating folder names in exercise 5.
+In exercise 3, the time difference assignment, was straight-up math, and I definitely had some trial and error. I understood what needed to happen, but needed to remind myself how to access an object. Having the from, to parameters threw me, as they're not used, and I removed them.
 
-Exercise 6 is where I fall down the most, and needed help. I barely have experience constructing and using classes in Java. It was a typical quickl end-of-term lesson, so approaching it now was tricky. I understand well that you're constructing a class Book that has its attributes, but it's always the constructor that throws me. It always feels like you're defining it again. And then at the end of the instructions, basically do it again. It just seems like going around the elbow to get to the knee, and I'm not any less convinced or less confused by why you'd do it, by this assignment. 
+Exercise 6 is where I fall down the most, and needed help. I barely have experience constructing and using classes in Java. It was a typical quickl end-of-term lesson, so approaching it now was tricky. I understand well that you're constructing a class Book that has its attributes, but it's always the constructor that throws me. It always feels like you're defining it again. I also didn't understand the math in the instructions. 24% sales tax on an item costing 20.00 is never going to be 30.43, at least that I know of.
 
-But, I got through it, and maybe one day I'll be tackling projects large enough where it makes sense.
+But, I got through it, I think, and maybe one day I'll be tackling projects large enough where it makes sense.
 
 ## Restcountries App
 
