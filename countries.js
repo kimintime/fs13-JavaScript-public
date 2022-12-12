@@ -1,9 +1,11 @@
-/*Global variables are set for the JSON object that handles the search results for all movies, and the JSON object that handles specific titles. I decided
-to keep these two separate, I think I'd run into problems later on with pagination. The index counter for number of pages of results is also global, given
-how many functions need access to it.*/
+/*Global variables are set for the JSON object that handles the search results for all movies, and the JSON object that handles specific titles. 
+I decided to keep these two separate. The index counter for number of pages of results is also global, given
+how many functions need access to it, as well the scroll position tracker, to go back to where you were on the page when you close out the 
+search results.*/
 
 let jsonObj;
 let jsonObj2;
+let scrollPos;
 let index = 1;
 
 //Listens for the enter key, modified to work on mobile devices.
@@ -75,8 +77,6 @@ function mainSearch() {
     let y = document.getElementById("results");
     y.style.display = "none";
 
-    document.getElementById('footer').innerHTML = "";
-
     let country = document.getElementById("myInput").value;
 
     //Added this innerHTML to clear some styling from previous searches.    
@@ -86,6 +86,7 @@ function mainSearch() {
 
         url = 'https://restcountries.com/v2/all';
         xmlhttp = new XMLHttpRequest();
+        
 
     } else {
 
@@ -198,6 +199,7 @@ function mainResults(jsonObj) {
 
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].addEventListener("click", function (i) {
+            scrollPos = $(window).scrollTop();
 
             document.getElementById("results").style.display = "";
 
@@ -205,8 +207,8 @@ function mainResults(jsonObj) {
 
             countrySearch(country);
 
-            $('html, body').animate({
-                scrollTop: $("#results").offset().top
+            $('html, body').animate({ 
+                scrollTop: $("#results").offset().top, 
             });
 
     /*Without this bind, the event listener was blissfully unaware of the i counter, and it's needed to match the right 
@@ -220,6 +222,7 @@ function mainResults(jsonObj) {
     for (let i = 0; i < posters.length; i++) {
 
         posters[i].addEventListener("click", function (i) {
+            scrollPos = $(window).scrollTop();
 
             document.getElementById("results").style.display = "";
 
@@ -304,6 +307,16 @@ function showCountry(jsonObj2) {
             
             let y = document.getElementById("results");
             y.style.display = "none";
+
+            console.log(scrollPos)
+
+            setTimeout(
+                function() {
+                  $('html, body').animate({
+                    scrollTop: scrollPos
+                  }, 500);
+                }, 1000);
+
         }.bind(null, i));
     }   
 }
