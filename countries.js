@@ -2,9 +2,9 @@
 to keep these two separate, I think I'd run into problems later on with pagination. The index counter for number of pages of results is also global, given
 how many functions need access to it.*/
 
-var jsonObj;
-var jsonObj2;
-var index = 1;
+let jsonObj;
+let jsonObj2;
+let index = 1;
 
 //Listens for the enter key, modified to work on mobile devices.
 
@@ -67,22 +67,25 @@ function mainSearch() {
 
     /*Hides the revelant tags so that there's no leftover styling in between new searches.*/
 
-    var x = document.getElementById("hide");
+    let url, xmlhttp;
+
+    let x = document.getElementById("hide");
     x.style.display = "none";
-    var y = document.getElementById("results");
+
+    let y = document.getElementById("results");
     y.style.display = "none";
 
     document.getElementById('footer').innerHTML = "";
 
-    var country = document.getElementById("myInput").value;
+    let country = document.getElementById("myInput").value;
 
     //Added this innerHTML to clear some styling from previous searches.    
     document.getElementById('content').innerHTML = "";
 
     if (!country) {
 
-        var url = 'https://restcountries.com/v2/all';
-        var xmlhttp = new XMLHttpRequest();
+        url = 'https://restcountries.com/v2/all';
+        xmlhttp = new XMLHttpRequest();
 
     } else {
 
@@ -93,8 +96,8 @@ function mainSearch() {
 
         document.getElementById("myInput").value = "";
 
-        var url = `https://restcountries.com/v2/name/${country}`
-        var xmlhttp = new XMLHttpRequest();
+        url = `https://restcountries.com/v2/name/${country}`
+        xmlhttp = new XMLHttpRequest();
     }
 
     xmlhttp.open("GET", url, true);
@@ -104,13 +107,13 @@ function mainSearch() {
 
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 
-            var x = document.getElementById("hide");
+            x = document.getElementById("hide");
             x.style.display = "";
 
             //If there's no values returned in the results, the page defaults to this.
             x.innerHTML = "<h1>No Results Found</h1>";
 
-            var y = document.getElementById("footer");
+            y = document.getElementById("footer");
             footer.innerHTML = "";
 
             jsonObj = JSON.parse(xmlhttp.responseText);
@@ -126,10 +129,10 @@ to the showCountry function for parsing of the JSON object.*/
 
 function countrySearch(country) {
 
-    var code = country;
+    let code = country;
 
-    var url = `https://restcountries.com/v2/alpha/${code}`;
-    var xmlhttp = new XMLHttpRequest();
+    const url = `https://restcountries.com/v2/alpha/${code}`;
+    const xmlhttp = new XMLHttpRequest();
 
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
@@ -151,18 +154,16 @@ function countrySearch(country) {
 
 function mainResults(jsonObj) {
 
-    var data = jsonObj;
-    var endRow = '</div>';
-    var list = '<div class="row d-flex justify-content-center">';
+    const data = jsonObj;
+    let endRow = '</div>';
+    let list = '<div class="row d-flex justify-content-center">';
 
     //Sets up the div to display the results
     var x = document.getElementById("hide");
     x.style.display = "";
 
     //Iterates through the search results and formats the HTML.
-    for (var i = 0; i < data.length; i++) {
-
-        var name = data[i].name
+    for (let i = 0; i < data.length; i++) {
 
         list += '<div class="col-md-4 text-center results"><h3>' + data[i].name + '</h3>';
         list += '<ul class="countrylist">';
@@ -193,14 +194,14 @@ function mainResults(jsonObj) {
     /*Sets up the More buttons, iterates through them, returns the given id to the countrySearch function to query for 
     the correct country. JQueary for animation to scroll to that div, to more easily see the results.*/
 
-    var buttons = document.getElementsByClassName("btn-success");
+    const buttons = document.getElementsByClassName("btn-success");
 
-    for (var i = 0; i < buttons.length; i++) {
+    for (let i = 0; i < buttons.length; i++) {
         buttons[i].addEventListener("click", function (i) {
 
             document.getElementById("results").style.display = "";
 
-            var country = data[i].alpha3Code;
+            let country = data[i].alpha3Code;
 
             countrySearch(country);
 
@@ -214,15 +215,15 @@ function mainResults(jsonObj) {
         }.bind(null, i));
     }
 
-    var posters = document.getElementsByClassName("thumbnail");
+    const posters = document.getElementsByClassName("thumbnail");
 
-    for (var i = 0; i < posters.length; i++) {
+    for (let i = 0; i < posters.length; i++) {
 
         posters[i].addEventListener("click", function (i) {
 
             document.getElementById("results").style.display = "";
 
-            var country = data[i].alpha3Code;
+            let country = data[i].alpha3Code;
 
             countrySearch(country);
 
@@ -238,14 +239,14 @@ function mainResults(jsonObj) {
 
 function showCountry(jsonObj2) {
 
-    var data = jsonObj2;
-    var endRow = '</div>';
-    var text = '<div class="col-md-8">';
-    var img = '<div class="col-md-4">';
+    const data = jsonObj2;
+    let endRow = '</div>';
+    let text = '<div class="col-md-8">';
+    let img = '<div class="col-md-4">';
 
     //console.log(data.name)
 
-    var y = document.getElementById("results");
+    let y = document.getElementById("results");
     y.style.display = "";
 
     text += '<button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
@@ -278,7 +279,7 @@ function showCountry(jsonObj2) {
     text += '</ul>';
     text += endRow;
     
-    let flag = data.flags.png
+    const flag = data.flags.png
 
     if(data.Poster !== null) {
         text += img+`<img class='full' src='${flag}'</img></br>`;
@@ -294,14 +295,14 @@ function showCountry(jsonObj2) {
     
     //Handles the close button for the results
     
-    var close = document.querySelectorAll(".close");
+    const close = document.querySelectorAll(".close");
     
-    for(var i = 0; i < close.length; i++) {
+    for(let i = 0; i < close.length; i++) {
         close[i].addEventListener("click", function(i) {
             
             document.getElementById('content').innerHTML = "";
             
-            var y = document.getElementById("results");
+            let y = document.getElementById("results");
             y.style.display = "none";
         }.bind(null, i));
     }   
