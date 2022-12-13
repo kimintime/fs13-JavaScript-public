@@ -4,12 +4,12 @@ from 0 to 100
  */
 const printNum = () => {
     for (let i = 0; i <= 100; i++) {
-        setTimeout( () => {
-          console.log(i);
+        setTimeout(() => {
+            console.log(i);
         }, i * 1000);
-      }  
-  }
-  printNum()
+    }
+}
+printNum()
 
 /*
 2. Given the array below:
@@ -23,20 +23,30 @@ possibility.
  */
 
 let myArr = ['12-24-2014', '09-2022-23', '12-30-2021', '08-02-2021', '07-15-2018', '2019-12-14', '2022-14-12']
-
 const fixDate = (array) => {
     return array.map(date => {
-
         let numbers = date.split('-')
+        let keepDate = []
         let day, month, year
 
-        for (let number of numbers) {
-            if (number > 31) {
-                year = number
-            } else if (number <= 12 && !month) {
-                month = number
+        for (let i = 0; i < numbers.length; i++) {
+            if (numbers[i] > 31) {
+                year = numbers[i]
+            }
+
+            if (numbers[i] !== year) {
+                keepDate.push(numbers[i])
+            }
+        }
+
+        for (let i = 0; i < keepDate.length - 1; i++) {
+            if (keepDate[i] < keepDate[i + 1]) {
+                month = keepDate[i]
+                day = keepDate[i + 1]
+
             } else {
-                day = number
+                month = keepDate[i + 1]
+                day = keepDate[i]
             }
         }
         date = [day, month, year]
@@ -46,6 +56,8 @@ const fixDate = (array) => {
 
 let newArr = fixDate(myArr)
 console.log(newArr)
+
+
 
 /*
 3. Counter function
@@ -61,15 +73,15 @@ const counter = () => {
 
     let difference, days, hours, minutes, seconds
 
-    difference = Math.floor((toDate - fromDate) / 1000 )
+    difference = Math.floor((toDate - fromDate) / 1000)
 
     days = Math.floor(difference / 86400)
     difference -= days * 86400
-   
+
 
     hours = Math.floor(difference / 3600) % 24
     difference -= hours * 3600
-    
+
 
     minutes = Math.floor(difference / 60) % 60
     difference -= minutes * 60
@@ -100,7 +112,7 @@ to array, and so on.
 */
 
 const generateNewFolderName = (existingFolders) => {
-    
+
 
     if (existingFolders.find(name => name === newFolder)) {
         count++
@@ -140,9 +152,9 @@ class Book {
     #cost;
     #profit;
     price;
-    
+
     constructor(title, cost, profit, price) {
-        if(title.length < 1 || cost <= 0 || profit <= 0 || profit > 0.5) {
+        if (title.length < 1 || cost <= 0 || profit <= 0 || profit > 0.5) {
             throw new Error("Data is not valid")
         } else {
             this._title = title;
@@ -150,7 +162,7 @@ class Book {
             this.#profit = profit;
         }
 
-        price = cost / (1-profit)
+        price = cost / (1 - profit)
         this.price = price;
     }
 
@@ -179,13 +191,13 @@ class Book {
     decreasePrice = (value) => {
         this.price -= value
 
-        if(this.price < 0) {
+        if (this.price < 0) {
             this.price = 0
         }
     }
 }
 
-class TaxableBook extends Book{
+class TaxableBook extends Book {
     #taxRate;
 
     constructor(title, cost, profit, price, taxRate = 24) {
@@ -195,7 +207,7 @@ class TaxableBook extends Book{
 
     get totalPrice() {
         return Math.round(this.price + (this.price * this.#taxRate / 100));
-    } 
+    }
 
 }
 
