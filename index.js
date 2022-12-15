@@ -66,32 +66,16 @@ Expected result in the console: 11 days - 13 hours - 38 minutes - 20 seconds
 */
 const dateFrom = new Date(500000)
 const dateTo = new Date(1000000000)
-const counter = () => {
+const counter = (from, to) => {
 
-    const fromDate = dateFrom
-    const toDate = dateTo
+    const dataDays = to.getDate() - from.getDate()
+    const dataHours = to.getHours() - from.getHours()
+    const dataMinutes = to.getMinutes() - from.getMinutes()
+    const dataSeconds = to.getSeconds() - from.getSeconds()
 
-    let difference, days, hours, minutes, seconds
-
-    difference = Math.floor((toDate - fromDate) / 1000)
-
-    days = Math.floor(difference / 86400)
-    difference -= days * 86400
-
-
-    hours = Math.floor(difference / 3600) % 24
-    difference -= hours * 3600
-
-
-    minutes = Math.floor(difference / 60) % 60
-    difference -= minutes * 60
-
-    seconds = difference % 60
-
-    return `${days} days - ${hours} hours - ${minutes} minutes - ${seconds} seconds`
-
+    return `${dataDays} days - ${dataHours} hours - ${dataMinutes} minutes - ${dataSeconds} seconds`
 }
-const timer = counter()
+const timer = counter(dateFrom, dateTo)
 console.log(timer)
 
 /*
